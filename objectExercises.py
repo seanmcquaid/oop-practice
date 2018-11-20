@@ -8,12 +8,15 @@ class Person(object):
             self.email = email
             self.phone = phone
             self.friends = []
+            self.greeting_count = 0
         def add_friend(self, friend):
             self.friends.append(friend)
         def num_friends(self):
             return len(self.friends)
         def greet(self, other_person):
+            self.greeting_count += 1
             print 'Hello %s, I am %s!' % (other_person.name, self.name)
+            print self.greeting_count
         def print_contact_info(self):
             print "%s's E-mail: %s, %s's Phone Number: %s" %(self.name, self.email, self.name, self.phone)
         def __repr__(self):
@@ -53,7 +56,8 @@ jordan = Person("Jordan", "jordan@aol.com", "495-586-4948")
 
 
 # Add an instance variable (attribute)
-# Add a friends instance variable (attribute) to the Person class. You will initialize it to an empty list within the constructor (__init__). 
+# Add a friends instance variable (attribute) to the Person class. You will initialize it to 
+# an empty list within the constructor (__init__). 
 # Once you've done this you should be able to add a friend to a person using list's append method:
 
 # jordan.friends.append(sonny)
@@ -90,7 +94,9 @@ jordan.add_friend(sonny)
 print jordan.num_friends()
 
 # Count number of greetings
-# We want to count the number of times a person has greeted someone. To do this, we'll add another attribute, call it say greeting_count, and initialize it to 0. Then each time the greet method is called, we'll increment greeting_count by 1.
+# We want to count the number of times a person has greeted someone. 
+# To do this, we'll add another attribute, call it say greeting_count, 
+# and initialize it to 0. Then each time the greet method is called, we'll increment greeting_count by 1.
 
 # >>> sonny.greeting_count
 # 0
@@ -100,21 +106,29 @@ print jordan.num_friends()
 # >>> sonny.greet(jordan)
 # >>> sonny.greeting_count
 # 2
+
+# sonny.greet(jordan)
 # __repr__
-# You may notice that when you are working with a person object, it's representation in the Python shell is pretty cryptic and unhelpful:
+# You may notice that when you are working with a person object, 
+# it's representation in the Python shell is pretty cryptic and unhelpful:
 
 # >>> jordan
 # <__main__.Person object at 0x106976410>
-# You can change that! Just add a __repr__ (dunder rep-er) method to the Person class and have it return a string. Whatever you return there will be used to "represent" your person object. 
-# For example, say I want a Person to be represented like <Person Jordan jordan@aol.com 495-586-3456>, I could implement __repr__ thus:
+# You can change that! Just add a __repr__ (dunder rep-er) method to the Person class and have it return a string. 
+# Whatever you return there will be used to "represent" your person object. 
+# For example, say I want a Person to be represented like <Person Jordan jordan@aol.com 495-586-3456>, 
+# I could implement __repr__ thus:
 
 #     def __repr__(self):
 #         return '' % (self.name, self.email, self.phone)
 # Implement your own __repr__ method, and you can represent your person objects however you want. 
 # Incidentally, __repr__ is also used when you use %r to render a value with a format string.
 
+# print sonny.__repr__()
+
 # Bonus Challenge
-# Keep track of the number of unique people a person has greeted, and be able to report that number via the num_unique_people_greeted method:
+# Keep track of the number of unique people a person has greeted, 
+# and be able to report that number via the num_unique_people_greeted method:
 
 # >>> sonny.num_unique_people_greeted()
 # 0
